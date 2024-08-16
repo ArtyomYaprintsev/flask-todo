@@ -38,27 +38,7 @@ Install requirements
 pip install -r requirements.txt
 ```
 
-### Check code and commit style
-
-Check code style:
-
-```bash
-bash code-style.sh
-```
-
-Check commit style:
-
-```bash
-gitlint
-```
-
-Fix imports:
-
-```bash
-isort .
-```
-
-### Install linter for your commits messages
+### Install linter for commits messages
 
 ```bash
 gitlint install-hook
@@ -76,20 +56,6 @@ Run all migrations:
 
 ```bash
 alembic upgrade head
-```
-
-### Pytest usage
-
-Run tests:
-
-```bash
-pytest .
-```
-
-Run tests with coverage:
-
-```bash
-pytest --cov-report html . --cov=./server/
 ```
 
 ## Roadmap
