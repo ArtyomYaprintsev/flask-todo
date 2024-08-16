@@ -31,8 +31,7 @@ class TitleRegexAndLengthRule(CommitRule):
             'Commit title is not valid. '
             'Commit title must start with an optional emoji and a capital '
             'letter. Max title length is 50 characters. '
-            'Template: [:emoji:] Commit template. ',
-            f'Got: {title}.'
+            f'Got: `{title}`.'
         )
 
-        return [RuleViolation(self.id, msg, title, line_nr=1)]
+        return [RuleViolation(self.id, msg, line_nr=1)]
