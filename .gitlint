@@ -1,0 +1,31 @@
+[general]
+ignore=body-is-missing
+ignore-merge-commits=true
+regex-style-search=true
+extra-path=gitlint_rules.py
+
+# [title-max-length]
+# line-length=50
+
+[title-min-length]
+min-length=3
+
+[body-max-line-length]
+line-length=79
+
+[body-min-length]
+min-length=1
+
+# Ignore rules if it's work in progress commit
+[ignore-by-title]
+regex=^(WIP|wip)
+
+# Ignore certain lines in a commit body that match a regex.
+# E.g. Ignore all lines that start with 'Co-Authored-By'
+[ignore-body-lines]
+regex=^Co-Authored-By
+
+# Ignore certain rules for commits of which the author name matches a regex
+# E.g. Match commits made by dependabot
+[ignore-by-author-name]
+regex=(.*)dependabot(.*)
