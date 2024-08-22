@@ -1,0 +1,9 @@
+Flask
+pydantic
+
+passlib[bcrypt]
+
+# The Python SQL Toolkit and Object Relational Mapper
+sqlalchemy
+# Alembic is a database migrations tool
+alembic

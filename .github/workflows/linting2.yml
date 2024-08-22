@@ -1,0 +1,49 @@
+name: Check code/commit style for pull request
+
+on: [push, pull_request]
+
+jobs:
+  commit-style:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.dev.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.dev.txt
+      - name: Check commit style
+        if: ${{ github.base_ref == 'main' || github.base_ref == 'develop' }}
+        run: |
+          gitlint --commits "origin/${{github.base_ref}}..origin/${{github.head_ref}}"
+
+  code-style:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+      - name: Check style
+        run: |
+          ./code-style.sh
